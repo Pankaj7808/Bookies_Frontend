@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline"; // ✅ Added import
+import { Box } from "@mui/material";
+import SignUp from "./SignUp";
+import theme from "./theme/theme";
 
+export const GradientBackground = ({ children }) => {
+  return (
+    <Box
+      sx={{
+        height: "100vh",
+        width: "100vw",
+        overflow: "hidden",
+        background: `
+          radial-gradient(circle at 20% 20%, #f8bbd0 0%, transparent 40%),
+          radial-gradient(circle at 80% 60%, #ce93d8 0%, transparent 40%),
+          linear-gradient(135deg, #e1bee7 0%, #ede7f6 100%)
+        `,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        p: 4,
+      }}
+    >
+      {children}
+    </Box>
+  );
+};
+
+// Main App component
 function App() {
-  const [count, setCount] = useState(0)
+  // Global styles
+  const style = `
+    html, body, #root {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+  `;
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <style>{style}</style>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <GradientBackground>
+          <SignUp />
+        </GradientBackground>
+      </ThemeProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
