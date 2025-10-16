@@ -2,8 +2,10 @@ import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline"; // ✅ Added import
 import { Box } from "@mui/material";
-import SignUp from "./SignUp";
+
 import theme from "./theme/theme";
+
+import AuthPage from "./AuthPage";
 
 export const GradientBackground = ({ children }) => {
   return (
@@ -48,7 +50,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <GradientBackground>
-          <SignUp />
+          <AuthPage />
         </GradientBackground>
       </ThemeProvider>
     </>

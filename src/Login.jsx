@@ -5,46 +5,49 @@ import {
   Typography,
   Stack,
   Button,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 
-function SignUp() {
+function Login({ onToggle }) {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
-    <Box>
+    <Box sx={{ width: "100%" }}>
       <Typography
         variant="h1"
-        sx={{ fontFamily: "'Lora', serif", fontWeight: 600, ml: 12 }}
+        sx={{
+          fontFamily: "'Lora', serif",
+          fontWeight: 600,
+          textAlign: "center",
+          mb: 4,
+        }}
       >
-        📖 Bookies.
+        Bookies.
       </Typography>
 
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
-          height: 450,
-          maxWidth: 500,
           width: "100%",
-          p: 4,
         }}
       >
         <Paper
           elevation={5}
           sx={{
-            maxWidth: 600,
             width: "100%",
+            maxWidth: isSmallScreen ? 340 : 700,
             p: 4,
             borderRadius: 6,
-            background: "rgba(255, 255, 255, 0.10)",
-            backdropFilter: "blur(20px)",
-            border: "1px solid rgba(255, 255, 255, 0.3)",
           }}
         >
           <Typography variant="h4" textAlign="center" mb={3}>
-            Sign Up
+            Login
           </Typography>
 
           <Stack spacing={3}>
-            
             <TextField variant="outlined" label="Email" required fullWidth />
             <TextField
               variant="outlined"
@@ -56,16 +59,22 @@ function SignUp() {
           </Stack>
 
           <Button variant="contained" fullWidth sx={{ mt: 3 }}>
-            Sign Up
+            Login
           </Button>
-          <Typography sx={{ mt: 2 }}>
-            Already have an account?{" "}
-            <Typography
+
+          <Typography sx={{ mt: 2, textAlign: "center" }}>
+            Don't have an account?{" "}
+            <Box
               component="span"
-              sx={{ fontWeight: 500, cursor: "pointer" ,font:"bold"}}
+              sx={{
+                fontWeight: "bold",
+                cursor: "pointer",
+                display: "inline",
+              }}
+              onClick={onToggle}
             >
-              Sign In
-            </Typography>
+              Sign Up
+            </Box>
           </Typography>
         </Paper>
       </Box>
@@ -73,4 +82,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default Login;

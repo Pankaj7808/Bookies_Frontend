@@ -2,24 +2,24 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
-    mode: 'light', // soft light mode
+    mode: 'light', 
     background: {
-      default: 'linear-gradient(135deg, #f6d365 0%, #fda085 100%)', // soft warm gradient background
-      paper: 'rgba(255, 255, 255, 0.3)', // semi-transparent paper for glass effect
+      default: 'linear-gradient(135deg, #f6d365 0%, #fda085 100%)',
+      paper: 'rgba(255, 255, 255, 0.3)', 
     },
     primary: {
-      main: '#4a4a4a', // dark gray for main text
+      main: '#4a4a4a', 
     },
     secondary: {
-      main: '#ffabbfff', // soft pink accent for buttons or highlights
+      main: '#ffabbfff',  
     },
     text: {
-      primary: '#2c2c2c', // dark text
-      secondary: '#555555', // secondary text
+      primary: '#2c2c2c', 
+      secondary: '#555555',
     },
   },
   typography: {
-    fontFamily: `'Poppins', 'Inter', sans-serif`, // modern fonts
+    fontFamily: `'Poppins', 'Inter', sans-serif`, 
     h1: {
       fontWeight: 700,
       fontSize: '2.5rem',
@@ -31,8 +31,8 @@ const theme = createTheme({
     },
   },
   shape: {
-    borderRadius: 4, // nice rounded corners
-  },
+    borderRadius: 4, 
+    },
   components: {
     MuiPaper: {
       styleOverrides: {
