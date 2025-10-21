@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Login from "./Login";
-import SignUp from "./SignUp";
+import Login from "../Components/auth/Login";
+import SignUp from "../Components/auth/SignUp";
 import { Box } from "@mui/material";
 
 const AuthPage = () => {

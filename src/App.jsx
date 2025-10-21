@@ -2,10 +2,10 @@ import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline"; // ✅ Added import
 import { Box } from "@mui/material";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import theme from "./theme/theme";
-
-import AuthPage from "./AuthPage";
+import AuthPage from "./pages/AuthPage";
+import Home from "./Components/Home";
 
 export const GradientBackground = ({ children }) => {
   return (
@@ -48,10 +48,15 @@ function App() {
     <>
       <style>{style}</style>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <GradientBackground>
-          <AuthPage />
-        </GradientBackground>
+        <BrowserRouter>
+          <CssBaseline />
+          <GradientBackground>
+            <Routes>
+              <Route path="/" element={<AuthPage />} />
+              <Route path="/home" element={<Home />} />
+            </Routes>
+          </GradientBackground>
+        </BrowserRouter>
       </ThemeProvider>
     </>
   );
