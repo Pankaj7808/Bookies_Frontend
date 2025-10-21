@@ -23,13 +23,15 @@ export default function useAuth() {
     setloading(true);
     seterror(null);
     try {
-      const res = await axios.post("auth/signup", FormData);
+      const res = await axios.post("/auth/signup", FormData);
       setuser(res.data.user);
       return res.data;
     } catch (err) {
       console.log(err);
       seterror(err.response?.data?.message || "signup failed");
       throw err;
+    }finally {
+      setloading(false);
     }
   };
 
@@ -37,10 +39,11 @@ export default function useAuth() {
     setloading(true);
     seterror(null);
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", credentials);
+      const res = await axios.post("/auth/login", credentials);
       setuser(res.data.user);
       return res.data;
     } catch (err) {
+      setloading(false);
       console.log(err);
       seterror(err.response?.data?.message || "login failed");
       throw err;

@@ -19,7 +19,7 @@ function Login({ onToggle }) {
   const [password, setpassword] = useState("");
   const { login, loading, logout, error } = useAuth();
   const navigate = useNavigate();
-  const handleLogin = async (e) => {
+  const handleLogin = async (e) => {  
     e.preventDefault();
     try {
       const data = await login({
@@ -28,7 +28,9 @@ function Login({ onToggle }) {
       });
       navigate("/home");
       console.log(data);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <Box sx={{ width: "100%" }}>
