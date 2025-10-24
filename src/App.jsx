@@ -1,8 +1,8 @@
 import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline"; // ✅ Added import
+import CssBaseline from "@mui/material/CssBaseline";
 import { Box } from "@mui/material";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
 import theme from "./theme/theme";
 import AuthPage from "./pages/AuthPage";
 import Home from "./Components/Home";
@@ -30,7 +30,14 @@ export const GradientBackground = ({ children }) => {
   );
 };
 
-// Main App component
+const ProtectedRoute = () => {
+  const isAuthenticated = localStorage.getItem("user") !== null;
+  if (!isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
+  return <Outlet />; 
+};
+
 function App() {
   // Global styles
   const style = `
@@ -53,7 +60,10 @@ function App() {
           <GradientBackground>
             <Routes>
               <Route path="/" element={<AuthPage />} />
-              <Route path="/home" element={<Home />} />
+              
+              <Route element={<ProtectedRoute />}>
+                <Route path="/home" element={<Home />} />
+              </Route>
             </Routes>
           </GradientBackground>
         </BrowserRouter>
