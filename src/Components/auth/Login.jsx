@@ -26,14 +26,16 @@ function Login({ onToggle }) {
         email: email,
         password: password,
       });
-      navigate("/home");
-      console.log(data);
+      if (data && data.token) {
+       navigate("/home");
+     }
+      
     } catch (err) {
       console.log(err);
     }
   };
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%" }} component="form" onSubmit={handleLogin}>
       <Typography
         variant="h1"
         sx={{
@@ -84,7 +86,7 @@ function Login({ onToggle }) {
             />
           </Stack>
 
-          <Button variant="contained" fullWidth sx={{ mt: 3 }} type="submit" onClick={handleLogin}>
+          <Button variant="contained" fullWidth sx={{ mt: 3 }} type="submit">
             {loading ? "Logging in..." : "Login"}
           </Button>
 

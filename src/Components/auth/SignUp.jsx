@@ -26,8 +26,9 @@ const SignUp = ({ onToggle }) => {
     e.preventDefault();
     try{
        const data = await signUp({name,email,password,role});
+       if (data && data.token) {
        navigate("/home");
-       console.log(data);
+     }
     }
     catch(err){
       console.log(err);
@@ -35,7 +36,7 @@ const SignUp = ({ onToggle }) => {
   }
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%" }} component="form" onSubmit={handleSignUp}>
       <Typography
         variant="h1"
         sx={{
@@ -82,7 +83,7 @@ const SignUp = ({ onToggle }) => {
             <TextField variant="outlined" label="Role" required fullWidth   onChange={(e)=>setrole(e.target.value)} />
           </Stack>
 
-          <Button variant="contained" fullWidth sx={{ mt: 3 }} onClick={handleSignUp}>
+          <Button variant="contained" fullWidth sx={{ mt: 3 }} type="submit">
             Sign Up
           </Button>
           {loading && <Typography sx={{ mt: 2, textAlign: "center" }}>Signing Up...</Typography>}

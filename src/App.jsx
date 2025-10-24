@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom
 import theme from "./theme/theme";
 import AuthPage from "./pages/AuthPage";
 import Home from "./Components/Home";
+import useAuth from "./Hooks/useAuth";
 
 export const GradientBackground = ({ children }) => {
   return (
@@ -32,10 +33,11 @@ export const GradientBackground = ({ children }) => {
 
 const ProtectedRoute = () => {
   const isAuthenticated = localStorage.getItem("user") !== null;
-  if (!isAuthenticated) {
+ const { user } = useAuth(); // reactive
+  if (!user) {
     return <Navigate to="/" replace />;
   }
-  return <Outlet />; 
+  return <Outlet />;
 };
 
 function App() {
