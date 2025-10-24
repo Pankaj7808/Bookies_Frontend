@@ -9,7 +9,7 @@ import {
   useTheme,
 } from "@mui/material";
 import useAuth from "../../Hooks/useAuth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login({ onToggle }) {
@@ -34,6 +34,15 @@ function Login({ onToggle }) {
       console.log(err);
     }
   };
+
+  useEffect(()=>{
+    const user = localStorage.getItem("user");
+    if(user){
+      navigate("/home");
+    }else{
+      navigate("/")
+    }
+  },[])
   return (
     <Box sx={{ width: "100%" }} component="form" onSubmit={handleLogin}>
       <Typography
